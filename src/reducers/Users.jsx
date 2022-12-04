@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useEffect } from "react";
 
 const initialState = {
   accounts: [
@@ -44,9 +45,18 @@ export const usersSlice = createSlice({
       );
       state.numberOfAccounts -= 1;
     },
+    search: (state, action) => {
+      if (action.payload) {
+        state.accounts = state.accounts.filter((account) =>
+          account.customerName.toLowerCase().includes(action.payload)
+        );
+      } else {
+        return initialState;
+      }
+    },
   },
 });
 
-export const { addUser, removeUser } = usersSlice.actions;
+export const { addUser, removeUser, search } = usersSlice.actions;
 
 export default usersSlice.reducer;

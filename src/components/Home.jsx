@@ -19,6 +19,7 @@ export default function Home() {
       accountType: type,
     };
     dispatch(addUser(account));
+    setShow(false);
   };
 
   const deleteAccount = (e) => {
